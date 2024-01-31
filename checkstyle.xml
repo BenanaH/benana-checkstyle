@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.2//EN" "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+<module name="Checker">
+    <module name="BeforeExecutionExclusionFileFilter">
+        <property name="fileNamePattern" value=".*[\\/]src[\\/]test[\\/].*$"/>
+    </module>
+    <module name="SuppressWarningsFilter"/>
+    <!-- 源文件编码格式（包括注释）必须是UTF-8,ASCII水平空格字符(0x20,即空格)是唯一允许出现的空白字符,制表符不用于缩进 -->
+    <property name="charset" value="UTF-8"/>
+    <property name="fileExtensions" value="java"/>
+    <!-- 使用 CHECKSTYLE:OFF and CHECKSTYLE:ON注释内容关闭或者开启某个检查 -->
+    <module name="SuppressWithPlainTextCommentFilter">
+        <property name="offCommentFormat" value="CHECKSTYLE\:OFF\:\s*(\w+)"/>
+        <property name="onCommentFormat" value="CHECKSTYLE\:ON\:\s*(\w+)"/>
+        <property name="checkFormat" value="$1"/>
+    </module>
+    <!-- 避免文件过长,不超过2000行 -->
+    <module name="FileLength">
+        <property name="max" value="2000"/>
+    </module>
+    <!-- 使用空格进行缩进,每次缩进4个空格: 不允许用Tab -->
+    <module name="FileTabCharacter"/>
+    <!-- 避免使用否定的布尔变量名 -->
+    <module name="RegexpSingleline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="(boolean|Boolean)\s(\bisNot?|\bmIsNot?)[A-Z](a-zA-Z0-9=;,\s)*"/>
+        <property name="message" value="避免使用否定的布尔变量名"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="(boolean|Boolean)\s((m[^I])|(mI[^s])|(s[^I])|(sI[^s])|[^msiI]|([iI][^sS]))(?![a-zA-Z0-9=;,\s]*\()"/>
+        <property name="message" value="布尔变量名或方法以is开头"/>
+        <property name="maximum" value="15"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="(boolean|Boolean)\s(((is)[^A-Z0-9])|(IS[^A-Z_0-9]+))"/>
+        <property name="message" value="布尔变量名以is后面字符必须是大写字母或者数字"/>
+    </module>
+    <!-- 右置注释与前面代码至少1空-->
+    <module name="RegexpSingleline">
+        <property name="format" value="[^:]//[^\s]"/>
+        <property name="message" value="单行注释符与注释内容间以空格分割"/>
+    </module>
+    <!-- 特殊场景,case xxx:后面加了注释 -->
+    <module name="RegexpSingleline">
+        <property name="format" value="case [\s\S]+[:]//"/>
+        <property name="message" value="单行注释符与注释内容间以空格分割"/>
+    </module>
+    <!-- 检查类似:/*XXXX*/ 右边无空格注释 -->
+    <module name="RegexpSingleline">
+        <property name="format" value="(\*)+[\u4E00-\u9FA5A-Za-z0-9_]"/>
+        <property name="message" value="单行注释符与注释内容间以空格分割"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="[\u4E00-\u9FA5A-Za-z0-9_]((\*)+)/"/>
+        <property name="message" value="单行注释符与注释内容间以空格分割"/>
+    </module>
+    <!-- 注释符与注释内容间要有1空格;右置注释与前面代码至少1空格 -->
+    <module name="RegexpSingleline">
+        <property name="format" value=".*;//"/>
+        <property name="message" value="编单行注释符与注释内容间以空格分割"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="^\s*//[^\u4e00-\u9fa5]*(\s*;|\{|\})$"/>
+        <property name="message" value="不用的代码段直接删除,不要注释掉"/>
+        </module>
+    <module name="RegexpSingleline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="\s+$"/>
+        <property name="message" value="行末或空行不能有多余空格"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="^.*for\s+[(](float|double).*$"/>
+        <property name="message" value="不能使用浮点数做循环变量"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="\([a-zA-Z\s,&lt;&gt;\\.]+\.{3}[a-zA-Z\s,&lt;&gt;\\.]*\)"/>
+        <property name="message" value="谨慎使用可变数量参数的方法"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="\.ordinal\(\)"/>
+        <property name="message" value="避免枚举常量序号的产生依赖于ordinal()方法"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="\w{65,}"/>
+        <property name="message" value="名字长度不能超过64个字符"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value=" [!=]= (false|true)"/>
+        <property name="message" value="冗余不简洁"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="(false|true) [!=]= "/>
+        <property name="message" value="冗余不简洁"/>
+    </module>
+    <module name="RegexpSingleline">
+        <property name="format" value="\.toArray\([\s\w]+\[[^0]\]"/>
+        <property name="message" value="将集合转为数组时使用toArray()方法且不带参数或者参数是类型相同零长度的数组"/>
+    </module>
+    <!-- 不要通过一个空的catch块忽略异常 -->
+    <module name="RegexpMultiline">
+        <property name="format" value="catch\s+[(][^)]*[)]\s+[{]\s+[}]"/>
+        <property name="message" value="不要通过一个空的catch块忽略异常"/>
+    </module>
+    <!-- 日志应分等级,对info及以下,使用条件形式或者使用占位符的方式 -->
+    <module name="RegexpMultiline">
+        <property name="format" value="(LOG|LOGGER|log|logger)\.(fatal|error|warn|info|debug)\((([^&quot;].+)|&quot;.+&quot;[^,])\s*(.*)\+"/>
+        <property name="message" value="日志应分等级,对info及以下,使用条件形式或者使用占位符的方式"/>
+    </module>
+    <!-- 只能检查整个类被注掉的情况 -->
+    <module name="RegexpMultiline">
+        <property name="format" value="/[*]+\s+(private|public|protected|static)+[^(]*[(]+[^)]*[)]+\s+[{]+[^\*/]*[\*/]+"/>
+        <property name="message" value="不用的代码段直接删除"/>
+    </module>
+    <module name="RegexpMultiline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="(null == )|(null != )|([A-Z_]+ (&lt;|&gt;|&gt;=|&lt;=|==|!=)+)"/>
+        <property name="message" value="表达式的比较,应当遵循左侧倾向于变化、右侧倾向于不变的原则"/>
+    </module>
+    <module name="RegexpMultiline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="(\{\s*[\r\n]\s*[\r\n]\s*[\r\n])|(\s*[\r\n]\s*[\r\n]\s*[\r\n]\s*\})"/>
+        <property name="message" value="大括号内部首尾,不需要空行"/>
+    </module>
+    <module name="RegexpMultiline">
+        <property name="severity" value="warning"/>
+        <property name="format" value="(^\s*[\r\n]){2,}"/>
+        <property name="message" value="减少不必要的空行(最多一个空行)"/>
+    </module>
+    <module name="RegexpMultiline">
+        <property name="format" value="\*/[\r\n]{3,}(public|private|protected)\s+(class|interface|enum)\s"/>
+        <property name="message" value="顶层类（接口或者枚举）头与类（接口或者枚举）首行不应该有空行"/>
+    </module>
+    <module name="RegexpMultiline">
+        <property name="format" value="\*/[\r\n]{3,}(class|interface|enum)\s"/>
+        <property name="message" value="顶层类（接口或者枚举）头与类（接口或者枚举）首行不应该有空行"/>
+    </module>
+    <!-- 注释正文与其下的各个Javadoc tag之间加1个空行 -->
+    <module name="RegexpMultiline">
+        <property name="format" value="^\s+\*\s+[^\*@]+[\r\n]\s+\*\s*\@"/>
+        <property name="message" value="注释正文与其下的各个Javadoc tag之间加1个空行"/>
+    </module>
+    <module name="RegexpMultiline">
+        <property name="format" value="(;|\})(\n|\r\n) +// "/>
+        <property name="message" value="注释与上面的代码之间加一个空行,但是如果上面已经是本范围（一般是个大括号）,则不用加空行"/>
+    </module>
+    <module name="LineLength">
+        <!-- 检查每行,最长200.忽略注释 -->
+        <property name="ignorePattern" value="^ *\* *[^ ]+$"/>
+        <property name="max" value="200"/>
+    </module>
+    <module name="TreeWalker">
+        <module name="SuppressionCommentFilter"/>
+        <module name="SuppressWarningsHolder"/>
+        <!-- 关于注释:建议代码通过合理的命名、函数短小等方式,让代码有自注释能力,然后配以简要的注释说明,不建议大量的冗余注释 -->
+        <module name="JavadocType">
+        </module>
+        <module name="JavadocMethod">
+            <!--检查方法和构造函数的javadoc注释-->
+            <!-- 不允许没有@param参数说明 -->
+            <property name="allowMissingParamTags" value="false"/>
+            <!-- 如果抛出异常不允许没有@throws -->
+            <property name="validateThrows" value="true"/>
+            <!-- 如果有返回值,不允许没有@return -->
+            <property name="allowMissingReturnTag" value="false"/>
+        </module>
+        <module name="MissingJavadocMethod">
+            <property name="allowedAnnotations" value="Override,Deprecated,Autowired"/>
+            <property name="allowMissingPropertyJavadoc" value="true"/>
+        </module>
+        <module name="JavadocStyle">
+            <!-- 检查javadoc的格式 -->
+            <property name="checkFirstSentence" value="false"/>
+            <!-- 不检查是否正常标点符号结尾 -->
+            <property name="checkEmptyJavadoc" value="true"/>
+            <!-- 检查空的javadoc -->
+            <property name="checkHtml" value="false"/>
+            <!-- 不检查html标签完整性 -->
+        </module>
+        <!-- 检查是否缺少@since标签 -->
+        <module name="WriteTag">
+            <property name="tag" value="@since"/>
+            <property name="tagFormat" value="^\d{4}-\d{2}-\d{2}$"/>
+            <property name="tagSeverity" value="ignore"/>
+        </module>
+        <module name="AnonInnerLength">
+            <!-- 检查内部类,最多80行 -->
+            <property name="max" value="80"/>
+        </module>
+        <module name="MethodLength">
+            <!-- 检查java方法,最大50 -->
+            <property name="countEmpty" value="false"/>
+            <property name="max" value="50"/>
+        </module>
+        <module name="ParameterNumber">
+            <!-- 检查参数个数,最大5 -->
+            <property name="max" value="5"/>
+        </module>
+        <!--Whitespace:空格检查-->
+        <!-- 方法或构造函数调用声明时,不能和左括号之间有空格 -->
+        <module name="MethodParamPad"/>
+        <!-- ~, \-\-（减减前缀）, ++（加加前缀）, .（点）,！,-（负号）,+(正号)这些符号背后不允许接空格.-->
+        <module name="NoWhitespaceAfter"/>
+        <!-- ;, .（点）, \-\-（后缀）, ++（后缀）这些符合前面不允许有空格   -->
+        <module name="NoWhitespaceBefore"/>
+        <!-- 一行写不下换行时操作符放行首 -->
+        <module name="OperatorWrap">
+            <property name="option" value="EOL"/>
+        </module>
+        <!-- 左圆括号右侧不能有空格,右圆括号左侧不能有空格,如不允许set( a.getString() ) -->
+        <module name="ParenPad"/>
+        <!-- 类型转换原则检查,不允许有空格,如 String s = ( String )s1; -->
+        <module name="TypecastParenPad"/>
+        <!-- 不能一行有多个参数声明,如int x,y,不便于理解和注释 -->
+        <module name="MultipleVariableDeclarations"/>
+        <module name="GenericWhitespace"/>
+        <!-- 二元操作符前后需加空格.如比较操作符, 赋值操作符"="、 "+=",算术操作符"+"、"%",逻辑操作符"&&"、"&",位域操作符"<<"、"^"等 -->
+        <module name="WhitespaceAround">
+            <property name="tokens" value="COLON,NOT_EQUAL,QUESTION,DIV,DIV_ASSIGN,BXOR,BXOR_ASSIGN,MINUS,LCURLY,RCURLY,STAR,STAR_ASSIGN,TYPE_EXTENSION_AND,BAND,LAND,BAND_ASSIGN,MOD,MOD_ASSIGN,PLUS,PLUS_ASSIGN,LT,SL,SL_ASSIGN,LE,ASSIGN,MINUS_ASSIGN,EQUAL,GT,GE,SR,SR_ASSIGN,BSR,BSR_ASSIGN,BOR,BOR_ASSIGN,LOR,LITERAL_ASSERT,LITERAL_ASSERT,LITERAL_CATCH,LITERAL_DO,LITERAL_ELSE,LITERAL_FINALLY,LITERAL_FOR,LITERAL_IF,LITERAL_RETURN,SLIST,LITERAL_SYNCHRONIZED,LITERAL_TRY,LITERAL_WHILE"/>
+        </module>
+        <!-- 检查是否存在TODO（待处理） TODO是javaIDE自动生成的.一般代码写完后要去掉. -->
+        <module name="TodoComment">
+            <property name="format" value="(TODO)|(FIXME)" />
+        </module>
+        <!--Modifiers:修饰符检查-->
+        <!-- 检查修饰符顺序,正确的是1.public 2.protected 3.private 4.abstract 5.static 6.final 7.transient 8.volatile 9.synchronized 10.native 11.strictfp -->
+        <module name="ModifierOrder"/>
+        <!--Block Checks:关于{}的检查-->
+        <module name="EmptyBlock"/>
+        <!-- 不允许有空块,如{} -->
+        <module name="LeftCurly">
+            <!-- 左侧大括号放在一行结束的右边 -->
+        </module>
+        <module name="NeedBraces"/>
+        <!-- if/eles while/do do/while for等要有{} -->
+        <module name="RightCurly">
+            <!-- 哪些情况右括号必须单独占行 -->
+            <property name="option" value="alone"/>
+            <property name="tokens" value="LITERAL_FINALLY, LITERAL_ELSE, CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, STATIC_INIT, INSTANCE_INIT"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="printStackTrace"/>
+            <property name="message" value="不允许打印堆栈信息"/>
+            <property name="ignoreComments" value="true"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="System.out.print.*"/>
+            <property name="message" value="不允许使用控制台输出"/>
+            <property name="ignoreComments" value="true"/>
+        </module>
+        <module name="MagicNumber">
+            <!-- 魔鬼数字 -->
+            <property name="ignoreNumbers" value="0, 1, -1"/>
+            <!-- 对-1/0/1不检查 -->
+            <property name="ignoreHashCodeMethod" value="true"/>
+            <property name="ignoreAnnotation" value="true"/>
+        </module>
+        <!-- 检查不该抛出的异常,如未声明/Runtime -->
+        <module name="IllegalThrows">
+            <property name="illegalClassNames" value="java.lang.Error,java.lang.RuntimeException"/>
+        </module>
+        <module name="DeclarationOrder"/>
+        <!-- 检查类、接口内声明顺序: 类成员变量(public/protected/package(default friendly)/private)/实例变量(顺序同变量)）/构造函数/共有方法/私有方法-->
+        <module name="UnnecessaryParentheses"/>
+        <!-- 不能使用不必要的圆括号 -->
+        <module name="StringLiteralEquality"/>
+        <!-- String不能用=或!=来判断相同 -->
+        <!--Class Design:类设计检查-->
+        <module name="VisibilityModifier">
+            <property name="packageAllowed" value="true"/>
+            <property name="protectedAllowed" value="true"/>
+        </module>
+        <!-- 检查类成员对外可见性,只有Static final的可以是public对外访问-->
+        <module name="ThrowsCount">
+            <!-- 同一个方法声明时最多可以抛出5个异常 -->
+            <property name="max" value="5"/>
+        </module>
+        <!-- 检查接口是否只定义了变量而没有定义方法,因为接口应该用来描述一个类型,所以只定义变量而不定义方法是不恰当的,from Effective Java-->
+        <module name="InterfaceIsType"/>
+        <!-- 定义使用long数据类型时用大写的L -->
+        <module name="UpperEll"/>
+        <module name="Indentation">
+            <property name="basicOffset" value="4"/>
+            <property name="braceAdjustment" value="0"/>
+            <property name="caseIndent" value="4"/>
+            <property name="throwsIndent" value="4"/>
+            <property name="lineWrappingIndentation" value="8"/>
+            <property name="arrayInitIndent" value="4"/>
+            <property name="forceStrictCondition" value="false"/>
+        </module>
+        <!-- 检查代码缩进对齐 -->
+        <module name="UncommentedMain">
+            <!-- 通过该属性排除进程启动类 -->
+            <property name="excludedClasses" value="\.[a-zA-Z]*Application$"/>
+        </module>
+        <!-- 不能有没有用不到的main函数,建议测试代码用junit进行 -->
+        <module name="Regexp">
+            <property name="format" value="一句话功能简述"/>
+            <!-- 不能出现“一句话功能简述”不清楚的注释,用自动生成的注释忽悠人 -->
+            <property name="illegalPattern" value="true"/>
+            <property name="message" value="请添加简单功能描述"/>
+        </module>
+        <module name="Regexp">
+            <property name="format" value="功能详细描述"/>
+            <property name="illegalPattern" value="true"/>
+            <property name="message" value="请添加详细功能描述"/>
+        </module>
+        <!-- 不能import*的方式引入包 -->
+        <module name="AvoidStarImport"/>
+        <!-- 不能重复引入 -->
+        <module name="RedundantImport"/>
+        <!-- 不能有无用的import -->
+        <module name="UnusedImports"/>
+        <module name="EmptyLineSeparator">
+            <property name="allowNoEmptyLineBetweenFields" value="true" />
+            <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
+            <property name="severity" value="warning"/>
+        </module>
+        <module name="ConstantName">
+            <!-- 常量命名检查 -->
+            <property name="format" value="(^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$)|(^log$)|(^logger$)"/>
+        </module>
+        <module name="LocalFinalVariableName">
+            <!-- 本地final变量命名检查 ipv6 ipv4 sha256-->
+            <property name="format" value="(^[a-z]([a-z0-9]+[A-Z]?)*$)"/>
+        </module>
+        <module name="LocalVariableName">
+            <!-- 本地变量名称检查 -->
+            <property name="format" value="(^m[a-zA-Z0-9]+$)|(^s[a-zA-Z0-9]+$)|(^[a-ln-rt-z]([a-z0-9]+[A-Z]?)*$)"/>
+        </module>
+        <module name="MemberName">
+            <!-- 成员名检查 ipv6 ipv4-->
+            <property name="format" value="(^m[a-zA-Z0-9]+$)|(^s[a-zA-Z0-9]+$)|(^[a-ln-rt-z]([a-z0-9]+[A-Z]?)*$)"/>
+        </module>
+        <module name="MethodName">
+            <!-- 方法名检查 -->
+            <property name="format" value="^[a-z]([a-z0-9]+[A-Z]?)*$"/>
+        </module>
+        <module name="ParameterName">
+            <!-- 参数检查: -->
+            <property name="format" value="(^[a-z]([a-z0-9]+[A-Z]?)*$)"/>
+        </module>
+        <module name="StaticVariableName">
+            <!-- 静态变量检查 -->
+            <property name="format" value="(^[a-rt-z]([a-z0-9]+[A-Z]?)*$)|(^s[a-zA-Z0-9]+$)|(^m[a-zA-Z0-9]+$)"/>
+        </module>
+        <module name="TypeName">
+            <!-- 类和接口检查 -->
+            <property name="format" value="^[A-Z]([a-z0-9]+[A-Z]?)*$"/>
+        </module>
+        <!-- 注释块标签顺序 -->
+        <module name="AtclauseOrder">
+            <property name="tagOrder" value="@param, @return, @throws, @deprecated" />
+            <property name="target"
+                      value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF" />
+        </module>
+        <!-- 禁止C风格的数组声明,例如:int num[]是c风格 -->
+        <module name="ArrayTypeStyle"/>
+        <!-- 变量被声明在接近它们首次使用的行 -->
+        <module name="VariableDeclarationUsageDistance">
+            <property name="allowedDistance" value="3"/>
+            <property name="severity" value="warning"/>
+        </module>
+        <!-- 应用于类,方法或构造方法的每个注解独占一行 -->
+        <module name="AnnotationLocation">
+            <property name="allowSamelineMultipleAnnotations" value="false"/>
+            <property name="allowSamelineSingleParameterlessAnnotation" value="false"/>
+            <property name="allowSamelineParameterizedAnnotation" value="false"/>
+        </module>
+        <!-- case语句块结束时如果不加break,需要有注释说明 -->
+        <module name="FallThrough">
+            <property name="checkLastCaseGroup" value = "false"/>
+            <property name="reliefPattern" value="^.*[fallthru|falls|fall]?\s+through.*$"/>
+        </module>
+        <!-- switch语句要有default分支,除非switch的条件变量是枚举类型 -->
+        <module name="MissingSwitchDefault"/>
+        <module name="DefaultComesLast"/>
+        <!-- 检查一行只有分号的情况 EmptyStatement  -->
+        <module name="EmptyStatement"/>
+        <module name="AvoidNestedBlocks">
+            <!-- 不允许内嵌{} -->
+            <property name="allowInSwitchCase" value="true"/>
+            <!-- switch语句内允许 -->
+        </module>
+        <module name="NestedTryDepth">
+            <!-- 内嵌的CheckStyle最大深度为2 -->
+            <property name="max" value="2"/>
+        </module>
+        <module name="NestedIfDepth">
+            <!-- 内嵌的if最大深度为4 -->
+            <property name="max" value="2"/>
+        </module>
+        <module name="NestedForDepth">
+            <property name="max" value="2"/>
+        </module>
+        <!-- 不要把方法的入参当做工作变量/临时变量（例外是方法中确实需要修改入参内容） -->
+        <module name="ParameterAssignment"/>
+        <!-- 避免在无关的变量或无关的概念之间重用名字,避免隐藏（hide）、遮蔽（shadow）和遮掩（obscure）-->
+        <module name="HiddenField">
+            <!-- 检查局部变量和参数屏蔽了类的成员 -->
+            <property name="ignoreConstructorParameter" value="true"/>
+            <!-- 忽略对构造函数的检查 -->
+            <property name="ignoreSetter" value="true"/>
+            <!-- 忽略对set方法的检查 -->
+            <property name="ignoreAbstractMethods" value="true"/>
+            <!-- 忽略对抽象方法的检查 -->
+            <property name="setterCanReturnItsClass" value="true"/>
+            <!-- 允许set方法的返回值为类对象 -->
+        </module>
+        <!-- 覆写equals方法时,应同时覆写hashCode方法-->
+        <module name="EqualsHashCode"/>
+        <!-- 接口定义中去掉多余的修饰词-->
+        <module name="RedundantModifier"/>
+        <!-- 子类覆写父类方法时应加上@Override注解-->
+        <module name="MissingOverride"/>
+        <!-- 异常和日志检查 -->
+        <module name="IllegalCatch">
+            <property name="illegalClassNames"
+                      value="java.lang.Exception,
+                         java.lang.Throwable,
+                         java.lang.RuntimeException,
+                         java.lang.NullPointerException"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="\.yield\(\)"/>
+            <property name="message" value="禁止使用yield方法,使用并发工具代替"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="\.wait\("/>
+            <property name="message" value="禁止使用wait方法,使用并发工具代替"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="\.setPriority\("/>
+            <property name="message" value="禁止使用setPriority方法,使用并发工具代替"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="\.notify\(\)"/>
+            <property name="message" value="禁止使用notify方法,使用并发工具代替"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="\.notifyAll\(\)"/>
+            <property name="message" value="禁止使用notifyAll方法,使用并发工具代替"/>
+        </module>
+        <!-- the maximum allowed number of boolean operations in one expression -->
+        <module name="BooleanExpressionComplexity">
+            <property name="max" value="3"/>
+        </module>
+        <!-- 不要使用已标注为@deprecated的过时方法 -->
+        <module name="SuppressWarnings"/>
+        <!-- 使用UTF-8 -->
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="(\.getBytes\(\))|(\.bodyAsString\(\))|(new Scanner\(new File\([\w]+\)\))|(new Scanner\([\w]+\))"/>
+            <property name="message" value="使用UTF-8"/>
+        </module>
+        <!-- 字符串大小写转换、数字格式化为西方数字时,必须加上Locale.ROOT或Locale.ENGLISH -->
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="\.(toLowerCase|toUpperCase)\((Locale\.[^ER][A-Z]+)?\)"/>
+            <property name="message" value="字符串大小写转换、数字格式化为西方数字时,必须加上Locale.ROOT或Locale.ENGLISH"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="format" value="String\.format\(((Locale\.[^ER][A-Z]+)|(&quot;.*&quot;)),\s.*\)"/>
+            <property name="message" value="字符串大小写转换、数字格式化为西方数字时,必须加上Locale.ROOT或Locale.ENGLISH"/>
+        </module>
+        <module name="OverloadMethodsDeclarationOrder"/>
+        <module name="InnerAssignment"/>
+        <module name="NoFinalizer"/>
+        <module name="ModifiedControlVariable"/>
+        <module name="SingleSpaceSeparator">
+            <property name="validateComments" value="true"/>
+        </module>
+        <!--字符串魔鬼常量-->
+        <module name="MultipleStringLiterals">
+            <property name="allowedDuplicates" value="2"/>
+            <property name="ignoreStringsRegexp"  value='^(("")|(", "))$'/>
+        </module>
+        <module name="EqualsAvoidNull"/>
+        <module name="CommentsIndentation"/>
+        <module name="AbbreviationAsWordInName">
+            <property name="allowedAbbreviationLength" value="0"/>
+        </module>
+    </module>
+</module>
