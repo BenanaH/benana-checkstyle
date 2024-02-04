@@ -308,8 +308,6 @@
             <property name="illegalPattern" value="true"/>
             <property name="message" value="请添加详细功能描述"/>
         </module>
-        <!-- 不能import*的方式引入包 -->
-        <module name="AvoidStarImport"/>
         <!-- 不能重复引入 -->
         <module name="RedundantImport"/>
         <!-- 不能有无用的import -->
