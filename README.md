@@ -39,6 +39,24 @@ https://plugins.jetbrains.com/plugin/1065-checkstyle-idea
 
 ## 具体规范
 
+### 不用的代码段直接删除,不要注释掉
+
+### 变量名字长度不能超过64个字符
+
+### 类注释规范
+
+```java
+/**
+ * BoilingWater
+ *
+ * @author Benana
+ * @since 2024-01-30
+ */
+public class BoilingWater {
+	// doSomething
+}
+```
+
 ### 使用空格进行缩进，每次缩进4个空格: 不允许用Tab
 
 在编译器中配置tab为4个空格即可
@@ -62,14 +80,20 @@ public void boilingWater(){// 我是滚水科技方法
 }
 ```
 
-### 不用的代码段直接删除,不要注释掉
+> 错误示范
+
+```java
+public void boilingWater(){//我是滚水科技方法
+    //我是滚水科技方法
+}
+```
 
 ### 行末或空行不能有多余空格
 
 > 错误示范
 
 ```Java
-public void boilingWater(){ // 我是滚水科技方法
+public void boilingWater(){ // 我是滚水科技方法 “空格”
 }
 ```
 
@@ -127,7 +151,7 @@ int serial = MyEnum.APP.ordinal();
 int serial = MyEnum.APP.getSerial();
 ```
 
-### 名字长度不能超过64个字符
+
 
 ### 莫名其妙的判断
 
@@ -160,3 +184,97 @@ try {
 }catch (Exception ignored){
 }
 ```
+
+### 日志使用条件形式或者使用占位符的方式
+
+> 错误示范
+
+```Java
+logger.info("boilingWater=" + 1);
+```
+
+> 正确示范
+
+```Java
+logger.info("boilingWater={}", 1);
+```
+
+### LoggerFactory命名规范
+
+> 正确示范
+
+```Java
+private static final Logger logger = LoggerFactory.getLogger(BoilingWater.class);
+```
+
+### 表达式的比较,应当遵循左侧倾向于变化、右侧倾向于不变的原则
+
+> 错误示范
+
+```Java
+if (null != boilingWater) {
+	// doSomething
+}
+```
+
+> 正确示范
+
+```Java
+if (boilingWater != null) {
+	// doSomething
+}
+```
+
+### 禁止C风格的数组声明
+
+> 例如:int num[]是c风格
+
+### case语句块结束时如果不加break,需要有注释说明
+
+> 正确示范
+
+```java
+public void fallthrough(String str) {
+    switch (str) {
+        case "1":
+            logger.info("1");
+            break;
+        case "2":
+            logger.info("2");// fall through
+        case "3":
+            logger.info("3");
+            break;
+        default:
+    }
+}
+
+@SuppressWarnings("fallthrough")
+public void fallthrough(String str) {
+    switch (str) {
+        case "1":
+            logger.info("1");
+            break;
+        case "2":
+            logger.info("2");
+            break;
+        case "3":
+            logger.info("3");
+        case "4":
+            logger.info("4");
+            break;
+        default:
+    }
+}
+```
+
+### 不允许对参数进行赋值
+
+> 错误示范
+
+```Java
+public int doSomething(int flag) {
+  flag = 6;
+  return flag;
+}
+```
+
