@@ -395,18 +395,6 @@
         </module>
         <!-- 不允许对参数进行赋值 -->
         <module name="ParameterAssignment"/>
-        <!-- 避免在无关的变量或无关的概念之间重用名字,避免隐藏（hide）、遮蔽（shadow）和遮掩（obscure）-->
-        <module name="HiddenField">
-            <!-- 检查局部变量和参数屏蔽了类的成员 -->
-            <property name="ignoreConstructorParameter" value="true"/>
-            <!-- 忽略对构造函数的检查 -->
-            <property name="ignoreSetter" value="true"/>
-            <!-- 忽略对set方法的检查 -->
-            <property name="ignoreAbstractMethods" value="true"/>
-            <!-- 忽略对抽象方法的检查 -->
-            <property name="setterCanReturnItsClass" value="true"/>
-            <!-- 允许set方法的返回值为类对象 -->
-        </module>
         <!-- 覆写equals方法时,应同时覆写hashCode方法-->
         <module name="EqualsHashCode"/>
         <!-- 接口定义中去掉多余的修饰词-->
