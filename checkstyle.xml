@@ -98,7 +98,7 @@
     <!-- 不要通过一个空的catch块忽略异常 -->
     <module name="RegexpMultiline">
         <property name="format" value="catch\s+[(][^)]*[)]\s+[{]\s+[}]"/>
-        <property name="message" value="不要通过一个空的catch块忽略异常"/>
+        <property name="message" value="通过一个空的catch块忽略异常，需要包含注释"/>
     </module>
     <!-- 日志使用条件形式或者使用占位符的方式 -->
     <module name="RegexpMultiline">
