@@ -158,14 +158,18 @@
         <module name="JavadocType">
         </module>
         <module name="JavadocMethod">
-            <!--检查方法和构造函数的javadoc注释-->
+            <!-- 不检测构造函数和注解 -->
+            <property name="tokens" value="METHOD_DEF,COMPACT_CTOR_DEF"/>
+            <!--检查方法的javadoc注释-->
             <!-- 不允许没有@param参数说明 -->
             <property name="allowMissingParamTags" value="false"/>
             <!-- 如果有返回值,不允许没有@return -->
             <property name="allowMissingReturnTag" value="false"/>
         </module>
         <module name="MissingJavadocMethod">
-            <property name="allowedAnnotations" value="Override,Deprecated,Autowired"/>
+            <!-- 不检测构造函数和注解 -->
+            <property name="tokens" value="METHOD_DEF,COMPACT_CTOR_DEF"/>
+            <property name="allowedAnnotations" value="Override,Deprecated,Autowired,Resource"/>
             <property name="allowMissingPropertyJavadoc" value="true"/>
         </module>
         <module name="JavadocStyle">
@@ -431,7 +435,6 @@
         <module name="BooleanExpressionComplexity">
             <property name="max" value="3"/>
         </module>
-        <!-- 不要使用已标注为@deprecated的过时方法 -->
         <module name="SuppressWarnings"/>
         <!-- 使用UTF-8 -->
         <module name="RegexpSinglelineJava">
