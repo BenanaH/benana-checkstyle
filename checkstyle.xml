@@ -169,7 +169,7 @@
         <module name="MissingJavadocMethod">
             <!-- 不检测构造函数和注解 -->
             <property name="tokens" value="METHOD_DEF,COMPACT_CTOR_DEF"/>
-            <property name="allowedAnnotations" value="Override,Deprecated,Autowired,Resource"/>
+            <property name="allowedAnnotations" value="Override,Deprecated,Autowired,Resource,Bean"/>
             <property name="allowMissingPropertyJavadoc" value="true"/>
         </module>
         <module name="JavadocStyle">
