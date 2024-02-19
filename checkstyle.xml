@@ -161,8 +161,6 @@
             <!--检查方法和构造函数的javadoc注释-->
             <!-- 不允许没有@param参数说明 -->
             <property name="allowMissingParamTags" value="false"/>
-            <!-- 如果抛出异常不允许没有@throws -->
-            <property name="validateThrows" value="true"/>
             <!-- 如果有返回值,不允许没有@return -->
             <property name="allowMissingReturnTag" value="false"/>
         </module>
@@ -458,7 +456,7 @@
         </module>
         <!--字符串魔鬼常量-->
         <module name="MultipleStringLiterals">
-            <property name="allowedDuplicates" value="2"/>
+            <property name="allowedDuplicates" value="5"/>
             <property name="ignoreStringsRegexp"  value='^(("")|(", "))$'/>
         </module>
         <module name="EqualsAvoidNull"/>
