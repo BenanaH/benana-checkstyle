@@ -348,7 +348,7 @@
         </module>
         <module name="TypeName">
             <!-- 类和接口检查 -->
-            <property name="format" value="^[A-Z]([a-z0-9]+[A-Z]?)*$"/>
+            <property name="format" value="^[A-Z]{1,2}([a-z0-9]+[A-Z]?)*$"/>
         </module>
         <!-- 注释块标签顺序 -->
         <module name="AtclauseOrder">
@@ -465,7 +465,7 @@
         <module name="EqualsAvoidNull"/>
         <module name="CommentsIndentation"/>
         <module name="AbbreviationAsWordInName">
-            <property name="allowedAbbreviationLength" value="0"/>
+            <property name="allowedAbbreviationLength" value="1"/>
         </module>
     </module>
 </module>
