@@ -199,6 +199,7 @@
         <module name="ParameterNumber">
             <!-- 检查参数个数,最大5 -->
             <property name="max" value="5"/>
+            <property name="ignoreOverriddenMethods" value="true"/>
         </module>
         <!--Whitespace:空格检查-->
         <!-- 方法或构造函数调用声明时,不能和左括号之间有空格 -->
