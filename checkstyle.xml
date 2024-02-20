@@ -107,7 +107,7 @@
     </module>
     <module name="RegexpMultiline">
         <property name="format" value="^(?!.*\blogger\s*=\s*).+LoggerFactory\.getLogger"/>
-        <property name="message" value="日志命名规范:private static final Logger logger = LoggerFactory.getLogger(MyClass.class);"/>
+        <property name="message" value="日志命名规范:private static final Logger logger = LoggerFactory.getLogger"/>
     </module>
     <!-- 只能检查整个类被注掉的情况 -->
     <module name="RegexpMultiline">
@@ -169,7 +169,7 @@
         <module name="MissingJavadocMethod">
             <!-- 不检测构造函数和注解 -->
             <property name="tokens" value="METHOD_DEF,COMPACT_CTOR_DEF"/>
-            <property name="allowedAnnotations" value="Override,Deprecated,Autowired,Resource,Bean"/>
+            <property name="allowedAnnotations" value="Override,Deprecated,Autowired,Resource,Bean,Operation,Tag"/>
             <property name="allowMissingPropertyJavadoc" value="true"/>
         </module>
         <module name="JavadocStyle">
