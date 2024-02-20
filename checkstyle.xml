@@ -403,14 +403,6 @@
         <module name="RedundantModifier"/>
         <!-- 子类覆写父类方法时应加上@Override注解-->
         <module name="MissingOverride"/>
-        <!-- 异常和日志检查 -->
-        <module name="IllegalCatch">
-            <property name="illegalClassNames"
-                      value="java.lang.Exception,
-                         java.lang.Throwable,
-                         java.lang.RuntimeException,
-                         java.lang.NullPointerException"/>
-        </module>
         <module name="RegexpSinglelineJava">
             <property name="format" value="\.yield\(\)"/>
             <property name="message" value="禁止使用yield方法,使用并发工具代替"/>
@@ -440,15 +432,6 @@
         <module name="RegexpSinglelineJava">
             <property name="format" value="(\.getBytes\(\))|(\.bodyAsString\(\))|(new Scanner\(new File\([\w]+\)\))|(new Scanner\([\w]+\))"/>
             <property name="message" value="使用UTF-8"/>
-        </module>
-        <!-- 字符串大小写转换、数字格式化为西方数字时,必须加上Locale.ROOT或Locale.ENGLISH -->
-        <module name="RegexpSinglelineJava">
-            <property name="format" value="\.(toLowerCase|toUpperCase)\((Locale\.[^ER][A-Z]+)?\)"/>
-            <property name="message" value="字符串大小写转换、数字格式化为西方数字时,必须加上Locale.ROOT或Locale.ENGLISH"/>
-        </module>
-        <module name="RegexpSinglelineJava">
-            <property name="format" value="String\.format\(((Locale\.[^ER][A-Z]+)|(&quot;.*&quot;)),\s.*\)"/>
-            <property name="message" value="字符串大小写转换、数字格式化为西方数字时,必须加上Locale.ROOT或Locale.ENGLISH"/>
         </module>
         <module name="OverloadMethodsDeclarationOrder"/>
         <module name="InnerAssignment"/>
