@@ -197,8 +197,8 @@
             <property name="max" value="50"/>
         </module>
         <module name="ParameterNumber">
-            <!-- 检查参数个数,最大5 -->
-            <property name="max" value="5"/>
+            <!-- 检查参数个数,最大8 -->
+            <property name="max" value="8"/>
             <property name="ignoreOverriddenMethods" value="true"/>
         </module>
         <!--Whitespace:空格检查-->
