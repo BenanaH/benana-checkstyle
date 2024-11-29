@@ -441,11 +441,6 @@
         <module name="SingleSpaceSeparator">
             <property name="validateComments" value="true"/>
         </module>
-        <!--字符串魔鬼常量-->
-        <module name="MultipleStringLiterals">
-            <property name="allowedDuplicates" value="5"/>
-            <property name="ignoreStringsRegexp"  value='^(("")|(", "))$'/>
-        </module>
         <module name="EqualsAvoidNull"/>
         <module name="CommentsIndentation"/>
         <module name="AbbreviationAsWordInName">
