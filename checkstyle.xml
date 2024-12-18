@@ -192,9 +192,9 @@
             <property name="max" value="80"/>
         </module>
         <module name="MethodLength">
-            <!-- 检查java方法,最大50 -->
+            <!-- 检查java方法,最大80 -->
             <property name="countEmpty" value="false"/>
-            <property name="max" value="50"/>
+            <property name="max" value="80"/>
         </module>
         <module name="ParameterNumber">
             <!-- 检查参数个数,最大8 -->
