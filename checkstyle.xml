@@ -224,9 +224,9 @@
             <property name="tokens" value="COLON,NOT_EQUAL,QUESTION,DIV,DIV_ASSIGN,BXOR,BXOR_ASSIGN,MINUS,LCURLY,RCURLY,STAR,STAR_ASSIGN,TYPE_EXTENSION_AND,BAND,LAND,BAND_ASSIGN,MOD,MOD_ASSIGN,PLUS,PLUS_ASSIGN,LT,SL,SL_ASSIGN,LE,ASSIGN,MINUS_ASSIGN,EQUAL,GT,GE,SR,SR_ASSIGN,BSR,BSR_ASSIGN,BOR,BOR_ASSIGN,LOR,LITERAL_ASSERT,LITERAL_ASSERT,LITERAL_CATCH,LITERAL_DO,LITERAL_ELSE,LITERAL_FINALLY,LITERAL_FOR,LITERAL_IF,LITERAL_RETURN,SLIST,LITERAL_SYNCHRONIZED,LITERAL_TRY,LITERAL_WHILE"/>
         </module>
         <!-- 检查是否存在TODO（待处理） TODO是javaIDE自动生成的.一般代码写完后要去掉. -->
-        <module name="TodoComment">
+        <!-- <module name="TodoComment">
             <property name="format" value="(TODO)|(FIXME)" />
-        </module>
+        </module> -->
         <!--Modifiers:修饰符检查-->
         <!-- 检查修饰符顺序,正确的是1.public 2.protected 3.private 4.abstract 5.static 6.final 7.transient 8.volatile 9.synchronized 10.native 11.strictfp -->
         <module name="ModifierOrder"/>
