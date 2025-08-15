@@ -429,11 +429,6 @@
             <property name="max" value="3"/>
         </module>
         <module name="SuppressWarnings"/>
-        <!-- 使用UTF-8 -->
-        <module name="RegexpSinglelineJava">
-            <property name="format" value="(\.getBytes\(\))|(\.bodyAsString\(\))|(new Scanner\(new File\([\w]+\)\))|(new Scanner\([\w]+\))"/>
-            <property name="message" value="使用UTF-8"/>
-        </module>
         <module name="OverloadMethodsDeclarationOrder"/>
         <module name="InnerAssignment"/>
         <module name="NoFinalizer"/>
