@@ -253,13 +253,6 @@
             <property name="message" value="不允许使用控制台输出"/>
             <property name="ignoreComments" value="true"/>
         </module>
-        <module name="MagicNumber">
-            <!-- 魔鬼数字 -->
-            <property name="ignoreNumbers" value="0, 1, -1"/>
-            <!-- 对-1/0/1不检查 -->
-            <property name="ignoreHashCodeMethod" value="true"/>
-            <property name="ignoreAnnotation" value="true"/>
-        </module>
         <!-- 检查不该抛出的异常,如未声明/Runtime -->
         <module name="IllegalThrows">
             <property name="illegalClassNames" value="java.lang.Error,java.lang.RuntimeException"/>
